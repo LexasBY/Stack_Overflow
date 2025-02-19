@@ -2,17 +2,15 @@ import "./App.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "../api/queryClients";
 import { BrowserRouter } from "react-router";
-import { Layout } from "./Layout";
+import Router from "./Router";
 
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Layout />
-        </BrowserRouter>
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter basename="/">
+        <Router />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

@@ -1,15 +1,17 @@
-//import Header from "@/widgets/Header/ui/Header";
-//import Menu from "@/widgets/Menu/ui/Menu";
-import { Router } from "./Router";
-
+import { Outlet } from "react-router";
+import Header from "../widgets/Header";
+import Menu from "../widgets/Menu";
+import "./layout.css";
+// Outlet, Protected route, styled components
 export const Layout = () => {
+  console.log("✅ Layout MOUNTED");
   return (
     <div id="layout" className="layout">
-      {/* <Header /> */}
+      <Header />
       <div className="outer-wrapper">
-        {/* <Menu /> */}
+        <Menu />
         <div className="container section section__container">
-          <Router />
+          <Outlet />
         </div>
       </div>
     </div>
