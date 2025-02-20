@@ -1,51 +1,16 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import type { AxiosError } from "axios";
-import { instance } from "../../api/config";
 import { Box, Typography, Button, TextField, Link } from "@mui/material";
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
+import { Formik, Form, Field, FieldProps } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router";
+import { useLogin, LoginInput } from "../../hooks/useLogin";
 import "./login.css";
-
-type LoginInput = {
-  username: string;
-  password: string;
-};
-
-type LoginResponse = {
-  id: string;
-  username: string;
-  role: string;
-  token?: string;
-};
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
   password: Yup.string().required("Required"),
 });
 
-async function loginUser(data: LoginInput): Promise<LoginResponse> {
-  const response = await instance.post<LoginResponse>("/auth/login", data);
-  return response.data;
-}
-
 const Login = () => {
-  const navigate = useNavigate();
-
-  const mutation: UseMutationResult<
-    LoginResponse,
-    AxiosError<unknown>,
-    LoginInput,
-    unknown
-  > = useMutation({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      navigate("/");
-    },
-    onError: (error) => {
-      console.error("Login error:", error.message);
-    },
-  });
+  const loginMutation = useLogin();
 
   return (
     <Box sx={{ width: 400, p: 2 }}>
@@ -56,45 +21,54 @@ const Login = () => {
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={(
-          values: LoginInput,
-          { setSubmitting }: FormikHelpers<LoginInput>
-        ) => {
-          mutation.mutate(values);
+        onSubmit={(values: LoginInput, { setSubmitting }) => {
+          loginMutation.mutate(values);
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <Field
-              as={TextField}
-              name="username"
-              label="Username"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <ErrorMessage name="username" component="div" className="error" />
+        {({ isSubmitting, errors, touched }) => (
+          <Form
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
+            <Field name="username">
+              {({ field }: FieldProps) => (
+                <TextField
+                  {...field}
+                  label="Username"
+                  variant="outlined"
+                  fullWidth
+                  error={touched.username && Boolean(errors.username)}
+                  helperText={
+                    touched.username && errors.username ? errors.username : ""
+                  }
+                />
+              )}
+            </Field>
 
-            <Field
-              as={TextField}
-              name="password"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <ErrorMessage name="password" component="div" className="error" />
+            <Field name="password">
+              {({ field }: FieldProps) => (
+                <TextField
+                  {...field}
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  error={touched.password && Boolean(errors.password)}
+                  helperText={
+                    touched.password && errors.password ? errors.password : ""
+                  }
+                />
+              )}
+            </Field>
 
             <Button
               type="submit"
               variant="contained"
               color="primary"
               fullWidth
-              disabled={isSubmitting || mutation.status === "pending"}
+              disabled={isSubmitting || loginMutation.status === "pending"}
             >
-              {mutation.status === "pending" ? "Loading..." : "Login"}
+              {loginMutation.status === "pending" ? "Loading..." : "Login"}
             </Button>
           </Form>
         )}

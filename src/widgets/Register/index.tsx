@@ -1,11 +1,8 @@
-// src/widgets/Register.tsx
-import { useMutation } from "@tanstack/react-query";
-import { instance } from "../../api/config";
 import { Box, Typography, Button, TextField, Link } from "@mui/material";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, FieldProps } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router";
 import { Link as RouterLink } from "react-router";
+import { useRegister, RegisterInput } from "../../hooks/useRegister";
 import "./register.css";
 
 const validationSchema = Yup.object().shape({
@@ -24,24 +21,8 @@ const validationSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const registerUser = async (data: {
-  username: string;
-  email: string;
-  password: string;
-}) => {
-  const response = await instance.post("/register", data);
-  return response.data;
-};
-
 const Register = () => {
-  const navigate = useNavigate();
-
-  const mutation = useMutation({
-    mutationFn: registerUser,
-    onSuccess: () => {
-      navigate("/login");
-    },
-  });
+  const registerMutation = useRegister();
 
   return (
     <Box className="register-modal">
@@ -57,56 +38,66 @@ const Register = () => {
           confirmPassword: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => mutation.mutate(values)}
+        onSubmit={(values: RegisterInput) => registerMutation.mutate(values)}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <Field
-              as={TextField}
-              name="username"
-              label="Username"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <ErrorMessage name="username" component="div" className="error" />
+          <Form
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
+            <Field name="username">
+              {({ field, meta }: FieldProps) => (
+                <TextField
+                  {...field}
+                  label="Username"
+                  fullWidth
+                  variant="outlined"
+                  error={meta.touched && Boolean(meta.error)}
+                  helperText={meta.touched && meta.error ? meta.error : ""}
+                />
+              )}
+            </Field>
 
-            <Field
-              as={TextField}
-              name="email"
-              label="Email"
-              type="email"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <ErrorMessage name="email" component="div" className="error" />
+            <Field name="email">
+              {({ field, meta }: FieldProps) => (
+                <TextField
+                  {...field}
+                  label="Email"
+                  type="email"
+                  fullWidth
+                  variant="outlined"
+                  error={meta.touched && Boolean(meta.error)}
+                  helperText={meta.touched && meta.error ? meta.error : ""}
+                />
+              )}
+            </Field>
 
-            <Field
-              as={TextField}
-              name="password"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <ErrorMessage name="password" component="div" className="error" />
+            <Field name="password">
+              {({ field, meta }: FieldProps) => (
+                <TextField
+                  {...field}
+                  label="Password"
+                  type="password"
+                  fullWidth
+                  variant="outlined"
+                  error={meta.touched && Boolean(meta.error)}
+                  helperText={meta.touched && meta.error ? meta.error : ""}
+                />
+              )}
+            </Field>
 
-            <Field
-              as={TextField}
-              name="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 2 }}
-            />
-            <ErrorMessage
-              name="confirmPassword"
-              component="div"
-              className="error"
-            />
+            <Field name="confirmPassword">
+              {({ field, meta }: FieldProps) => (
+                <TextField
+                  {...field}
+                  label="Confirm Password"
+                  type="password"
+                  fullWidth
+                  variant="outlined"
+                  error={meta.touched && Boolean(meta.error)}
+                  helperText={meta.touched && meta.error ? meta.error : ""}
+                />
+              )}
+            </Field>
 
             <Button
               type="submit"
