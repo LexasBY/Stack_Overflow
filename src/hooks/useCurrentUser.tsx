@@ -1,6 +1,5 @@
-// src/hooks/useCurrentUser.ts
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { instance } from "../api/config";
 
 export interface User {
   id: string;
@@ -9,9 +8,7 @@ export interface User {
 }
 
 async function fetchCurrentUser(): Promise<User> {
-  const response = await axios.get<User>("/api/auth", {
-    withCredentials: true,
-  });
+  const response = await instance.get<User>("/auth");
   return response.data;
 }
 

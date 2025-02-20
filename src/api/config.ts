@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://codelang.vercel.app/api",
+  baseURL: "/api",
   withCredentials: true,
 });
 

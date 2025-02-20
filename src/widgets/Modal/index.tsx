@@ -24,7 +24,9 @@ const Modal: FC = () => {
         <IconButton className="close-btn" onClick={() => navigate("/")}>
           <CloseIcon className="close-modal-svg" />
         </IconButton>
-        {location.pathname === "/register" ? <Register /> : <Login />}
+        <div className="modal-content">
+          {location.pathname === "/register" ? <Register /> : <Login />}
+        </div>
       </div>
     </div>,
     document.body

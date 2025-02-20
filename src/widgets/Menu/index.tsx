@@ -3,11 +3,11 @@ import { NavLink } from "react-router";
 
 const menuItems = [
   { path: "/", label: "Home", icon: "🏠" },
-  { path: "/account", label: "My Account", icon: "👤" },
-  { path: "/new-snippet", label: "Post Snippet", icon: "📝" },
-  { path: "/my-snippets", label: "My Snippets", icon: "📂" },
+  { path: "/me", label: "My Account", icon: "👤" },
+  { path: "/snippet/new", label: "Post Snippet", icon: "📝" },
+  { path: "/snippets/me", label: "My Snippets", icon: "📂" },
   { path: "/questions", label: "Questions", icon: "❓" },
-  { path: "/units", label: "Units", icon: "⚙️" },
+  { path: "/users", label: "Users", icon: "👥" },
 ];
 
 const Menu = () => {

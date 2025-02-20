@@ -1,7 +1,7 @@
 // src/widgets/Register.tsx
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { Box, Typography, Button, Link, TextField } from "@mui/material";
+import { instance } from "../../api/config";
+import { Box, Typography, Button, TextField, Link } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router";
@@ -29,7 +29,7 @@ const registerUser = async (data: {
   email: string;
   password: string;
 }) => {
-  const response = await axios.post("/api/register", data);
+  const response = await instance.post("/register", data);
   return response.data;
 };
 
@@ -121,8 +121,12 @@ const Register = () => {
         )}
       </Formik>
 
-      <Typography variant="body2" sx={{ mt: 2 }}>
-        Already have an account?{" "}
+      <Typography
+        variant="body2"
+        sx={{ mt: 2, color: "grey.600", textAlign: "center" }}
+      >
+        Already have an account?
+        <br />
         <Link component={RouterLink} to="/login" underline="hover">
           Login here
         </Link>

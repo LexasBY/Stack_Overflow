@@ -1,22 +1,23 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
-import { useNavigate } from "react-router";
+import { AxiosError } from "axios";
+//import { useNavigate } from "react-router";
+import { instance } from "../api/config";
 
 type LogoutError = AxiosError<unknown>;
 
 async function logoutRequest(): Promise<void> {
-  await axios.post("/api/auth/logout", {}, { withCredentials: true });
+  await instance.post("/auth/logout");
 }
 
 export function useLogout() {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   return useMutation<void, LogoutError, void, unknown>({
     mutationFn: logoutRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["currentUser"] });
-      navigate("/login");
+      queryClient.resetQueries({ queryKey: ["currentUser"] });
+      //navigate("/login");
     },
     onError: (error) => {
       console.error("Logout error:", error.message);

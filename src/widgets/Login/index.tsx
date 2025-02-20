@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import axios from "axios";
+import { instance } from "../../api/config";
 import { Box, Typography, Button, TextField, Link } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
@@ -25,9 +25,7 @@ const validationSchema = Yup.object().shape({
 });
 
 async function loginUser(data: LoginInput): Promise<LoginResponse> {
-  const response = await axios.post<LoginResponse>("/api/auth/login", data, {
-    withCredentials: true,
-  });
+  const response = await instance.post<LoginResponse>("/auth/login", data);
   return response.data;
 }
 
@@ -102,8 +100,12 @@ const Login = () => {
         )}
       </Formik>
 
-      <Typography variant="body2" sx={{ mt: 2 }}>
-        Don't have an account?{" "}
+      <Typography
+        variant="body2"
+        sx={{ mt: 2, color: "grey.600", textAlign: "center" }}
+      >
+        Don't have an account?
+        <br />
         <Link href="/register" underline="hover">
           Register here
         </Link>

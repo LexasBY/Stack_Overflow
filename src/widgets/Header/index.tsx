@@ -18,6 +18,7 @@ const Header = () => {
       </header>
     );
   }
+  console.log(user);
 
   const buttonSx = {
     backgroundColor: "white",
