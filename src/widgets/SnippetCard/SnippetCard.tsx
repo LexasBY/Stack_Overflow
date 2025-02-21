@@ -1,9 +1,9 @@
-// src/widgets/SnippetCard/SnippetCard.tsx
 import React from "react";
 import "./snippetCard.css";
+import { Editor } from "@monaco-editor/react";
 import { Snippet } from "../../hooks/useSnippets";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
-import { IconButton, Typography } from "@mui/material";
+import { IconButton, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
@@ -21,47 +21,56 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   const commentsCount = snippet.comments.length;
 
   const handleLike = () => {
-    // TODO: Логика лайка
+    // TODO: Реализовать логику лайка
   };
 
   const handleDislike = () => {
-    // TODO: Логика дизлайка
+    // TODO: Реализовать логику дизлайка
   };
+
+  const language = snippet.language.toLowerCase();
 
   return (
     <div className="snippet-card">
       <div className="snippet-card__header">
-        <span className="snippet-card__author">{snippet.user.username}</span>
-        <span className="snippet-card__language">{snippet.language}</span>
+        <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+          {snippet.user.username}
+        </Typography>
+        <Typography variant="body2" sx={{ color: "gray" }}>
+          {snippet.language}
+        </Typography>
       </div>
 
-      {/* место для кода */}
-      <div className="snippet-card__code">{snippet.code}</div>
+      <Box sx={{ marginBottom: 2 }}>
+        <Editor
+          height="250px"
+          width="1000px"
+          defaultLanguage={language}
+          value={snippet.code}
+          options={{
+            readOnly: true,
+            minimap: { enabled: false },
+            scrollBeyondLastLine: false,
+          }}
+        />
+      </Box>
 
       <div className="snippet-card__footer">
-        <div className="snippet-card__likes">
-          <IconButton
-            onClick={handleLike}
-            disabled={!user}
-            size="small"
-            style={{ padding: "4px" }}
-          >
+        <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+          <IconButton onClick={handleLike} disabled={!user} size="small">
             <ThumbUpIcon fontSize="small" />
           </IconButton>
           <Typography variant="body2">{likesCount}</Typography>
 
-          <IconButton
-            onClick={handleDislike}
-            disabled={!user}
-            size="small"
-            style={{ padding: "4px" }}
-          >
+          <IconButton onClick={handleDislike} disabled={!user} size="small">
             <ThumbDownIcon fontSize="small" />
           </IconButton>
           <Typography variant="body2">{dislikesCount}</Typography>
-        </div>
+        </Box>
 
-        <span className="snippet-card__comments">{commentsCount} comments</span>
+        <Typography variant="body2" sx={{ marginLeft: "auto" }}>
+          {commentsCount} comments
+        </Typography>
       </div>
     </div>
   );
