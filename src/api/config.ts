@@ -5,6 +5,16 @@ export const instance = axios.create({
   withCredentials: true,
 });
 
+// instance.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     if (error.response?.status === 401) {
+//       window.location.href = "/login";
+//     }
+//     return Promise.reject(error);
+//   }
+// );
+
 // • запросы автоматически отправляют токен, если он есть в localStorage.
 // •	Если API вернёт 401 Unauthorized, можно сразу разлогинить пользователя или сделать редирект.
 // •	Все ошибки логируются, и их можно обработать.

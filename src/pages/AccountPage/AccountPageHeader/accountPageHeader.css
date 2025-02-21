@@ -1,0 +1,80 @@
+/* src/widgets/AccountPageHeader/accountPageHeader.css */
+
+.account-header {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.account-header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.account-header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+/* 
+.account-header__avatar {
+  
+} */
+
+.account-header__user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.account-header__username {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.account-header__details {
+  color: #666;
+}
+
+.account-header__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.account-header__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  color: #333;
+}
+
+.account-header__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.account-header__actions .MuiIconButton-root {
+  width: 60px;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.account-header__actions .MuiIconButton-colorWarning {
+  background-color: #f7941d;
+}
+.account-header__actions .MuiIconButton-colorWarning:hover {
+  background-color: #f57200;
+}
+
+.account-header__actions .MuiIconButton-colorError {
+  background-color: #b71c1c;
+}
+.account-header__actions .MuiIconButton-colorError:hover {
+  background-color: #9f1717;
+}
