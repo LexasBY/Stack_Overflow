@@ -7,8 +7,7 @@ export interface ChangePasswordData {
 }
 
 async function changePassword(data: ChangePasswordData) {
-  // Используем instance.patch; путь указан относительно baseURL
-  const res = await instance.patch("/users/change-password", data);
+  const res = await instance.patch("/me/password", data);
   return res.data;
 }
 

@@ -1,14 +1,20 @@
-// src/widgets/ChangePasswordForm.tsx
 import React from "react";
-import { Formik, Form, Field, FieldProps } from "formik";
-import { Box, Button, TextField } from "@mui/material";
+import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import * as Yup from "yup";
 import { useChangePassword } from "../../hooks/useChangePassword";
+import { AxiosError } from "axios";
 
 const schema = Yup.object().shape({
   oldPassword: Yup.string().required("Required"),
   newPassword: Yup.string().min(6, "At least 6 chars").required("Required"),
 });
+
+interface ErrorResponse {
+  statusCode: number;
+  endpoint: string;
+  message: string;
+}
 
 const ChangePasswordForm: React.FC = () => {
   const mutation = useChangePassword();
@@ -18,14 +24,38 @@ const ChangePasswordForm: React.FC = () => {
       <Formik
         initialValues={{ oldPassword: "", newPassword: "" }}
         validationSchema={schema}
-        onSubmit={(values) => {
-          mutation.mutate({
-            oldPassword: values.oldPassword,
-            newPassword: values.newPassword,
-          });
+        onSubmit={(
+          values,
+          {
+            setSubmitting,
+            setStatus,
+            resetForm,
+          }: FormikHelpers<{
+            oldPassword: string;
+            newPassword: string;
+          }>
+        ) => {
+          mutation.mutate(
+            {
+              oldPassword: values.oldPassword,
+              newPassword: values.newPassword,
+            },
+            {
+              onError: (error) => {
+                const axiosError = error as AxiosError;
+                const errData = axiosError.response?.data as ErrorResponse;
+                setStatus(errData.message || "An error occurred");
+              },
+              onSuccess: () => {
+                setStatus("");
+                resetForm();
+              },
+              onSettled: () => setSubmitting(false),
+            }
+          );
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, touched, isSubmitting, status }) => (
           <Form
             style={{ display: "flex", flexDirection: "column", gap: "8px" }}
           >
@@ -45,6 +75,7 @@ const ChangePasswordForm: React.FC = () => {
                 />
               )}
             </Field>
+
             <Field name="newPassword">
               {({ field }: FieldProps) => (
                 <TextField
@@ -61,12 +92,21 @@ const ChangePasswordForm: React.FC = () => {
                 />
               )}
             </Field>
+
+            {status && (
+              <Typography color="error" variant="body2">
+                {status}
+              </Typography>
+            )}
+
             <Button
               type="submit"
               variant="contained"
-              disabled={isSubmitting || mutation.isPending}
+              disabled={isSubmitting || mutation.status === "pending"}
             >
-              Change password
+              {mutation.status === "pending"
+                ? "Changing..."
+                : "Change password"}
             </Button>
           </Form>
         )}

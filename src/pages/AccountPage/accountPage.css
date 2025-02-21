@@ -1,7 +1,5 @@
-/* src/pages/AccountPage/accountPage.css */
-
 .account-page {
-  max-width: 900px;
+  width: 900px;
   margin: 0 auto;
   padding: 20px;
 }

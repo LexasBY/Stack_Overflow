@@ -2,12 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { instance } from "../api/config";
 
 export interface ChangeUsernameData {
-  newUsername: string;
+  username: string;
 }
 
 async function changeUsername(data: ChangeUsernameData) {
-  // Используем instance.patch; путь указан относительно baseURL
-  const res = await instance.patch("/users/change-username", data);
+  const res = await instance.patch("/me", data);
   return res.data;
 }
 
