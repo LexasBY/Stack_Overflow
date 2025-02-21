@@ -1,0 +1,17 @@
+.snippet-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #000;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.snippet-card + .snippet-card {
+  margin-top: 16px;
+}
