@@ -1,0 +1,74 @@
+.snippet-card {
+  max-width: 1600px;
+  margin: 16px auto;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.snippet-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.snippet-card__author {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.snippet-card__language {
+  font-size: 14px;
+  color: #888;
+}
+
+.snippet-card__code {
+  background-color: #f5f5f5;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-family: "Source Code Pro", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.snippet-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 8px;
+}
+
+.snippet-card__likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.snippet-card__comments {
+  margin-left: auto;
+  font-size: 14px;
+  color: #666;
+}
+
+.snippet-card__icon-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 4px;
+}
+
+.snippet-card__icon-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}

@@ -1,0 +1,16 @@
+.homepage {
+  padding-top: 80px;
+  text-align: center;
+}
+
+.homepage__title {
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.homepage__snippets-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: left;
+}

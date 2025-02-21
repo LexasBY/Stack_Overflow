@@ -4,6 +4,7 @@ import GuestOnly from "../shared/routeGuards/GuestOnly";
 import Modal from "../widgets/Modal";
 import AccountPage from "../pages/AccountPage/AccountPage";
 import ProtectedRoute from "../shared/routeGuards/ProtectedRoute";
+import HomePage from "../pages/HomePage/HomePage";
 
 const Placeholder = ({ name }: { name: string }) => (
   <h2 style={{ color: "red" }}>{name} Page</h2>
@@ -12,7 +13,7 @@ export const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Placeholder name="Home" />} />
+        <Route index element={<HomePage />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="me" element={<AccountPage />} />
