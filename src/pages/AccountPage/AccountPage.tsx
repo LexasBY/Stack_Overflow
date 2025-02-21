@@ -1,9 +1,8 @@
-// src/pages/AccountPage/AccountPage.tsx
 import React from "react";
 import { Box, Typography, CircularProgress, Paper } from "@mui/material";
 import { useAccountInfo } from "../../hooks/useMe";
 import { useUserStatistic } from "../../hooks/useUserStatistics";
-import AccountPageHeader from "../AccountPage/AccountPageHeader/AccountPageHeader";
+import AccountPageHeader from "./AccountPageHeader/AccountPageHeader";
 import EditProfileForm from "../../widgets/EditProfileForm/EditProfileForm";
 import ChangePasswordForm from "../../widgets/ChangePasswordForm/ChangePasswordForm";
 import "./accountPage.css";

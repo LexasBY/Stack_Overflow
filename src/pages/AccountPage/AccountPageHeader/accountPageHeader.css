@@ -52,3 +52,29 @@
   margin-top: 8px;
   color: #333;
 }
+
+.account-header__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.account-header__actions .MuiIconButton-root {
+  width: 60px;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.account-header__actions .MuiIconButton-colorWarning {
+  background-color: #f7941d;
+}
+.account-header__actions .MuiIconButton-colorWarning:hover {
+  background-color: #f57200;
+}
+
+.account-header__actions .MuiIconButton-colorError {
+  background-color: #b71c1c;
+}
+.account-header__actions .MuiIconButton-colorError:hover {
+  background-color: #9f1717;
+}

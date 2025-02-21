@@ -3,6 +3,7 @@ import { Layout } from "./Layout";
 import GuestOnly from "../shared/routeGuards/GuestOnly";
 import Modal from "../widgets/Modal";
 import AccountPage from "../pages/AccountPage/AccountPage";
+import ProtectedRoute from "../shared/routeGuards/ProtectedRoute";
 
 const Placeholder = ({ name }: { name: string }) => (
   <h2 style={{ color: "red" }}>{name} Page</h2>
@@ -12,7 +13,11 @@ export const Router = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Placeholder name="Home" />} />
-        <Route path="me" element={<AccountPage />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="me" element={<AccountPage />} />
+        </Route>
+
         <Route
           path="snippet/new"
           element={<Placeholder name="New Snippet" />}

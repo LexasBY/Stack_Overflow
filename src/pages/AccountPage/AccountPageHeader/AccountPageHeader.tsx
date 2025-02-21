@@ -1,7 +1,9 @@
+// src/widgets/AccountPageHeader/AccountPageHeader.tsx
 import React from "react";
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useLogout } from "../../../hooks/useLogout";
 import "./accountPageHeader.css";
 
 export interface AccountPageHeaderProps {
@@ -33,6 +35,9 @@ const AccountPageHeader: React.FC<AccountPageHeaderProps> = ({
   correctAnswers,
   regularAnswers,
 }) => {
+  const logoutMutation = useLogout();
+  const isLogoutLoading = logoutMutation.status === "pending";
+
   return (
     <Box className="account-header">
       <Box className="account-header__top">
@@ -53,8 +58,12 @@ const AccountPageHeader: React.FC<AccountPageHeaderProps> = ({
         </Box>
 
         <Box className="account-header__actions">
-          <IconButton color="warning">
-            <EditIcon />
+          <IconButton
+            color="warning"
+            onClick={() => logoutMutation.mutate()}
+            disabled={isLogoutLoading}
+          >
+            <LogoutIcon />
           </IconButton>
           <IconButton color="error">
             <DeleteIcon />
