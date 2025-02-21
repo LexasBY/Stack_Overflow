@@ -1,8 +1,9 @@
+// src/widgets/SnippetCard/SnippetCard.tsx
 import React from "react";
 import "./snippetCard.css";
 import { Snippet } from "../../hooks/useSnippets";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
-import { Box, Typography, IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
@@ -29,28 +30,39 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
 
   return (
     <div className="snippet-card">
-      <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-        {snippet.language}
-      </Typography>
-      <Typography variant="body2" sx={{ color: "gray" }}>
-        by {snippet.user.username}
-      </Typography>
+      <div className="snippet-card__header">
+        <span className="snippet-card__author">{snippet.user.username}</span>
+        <span className="snippet-card__language">{snippet.language}</span>
+      </div>
 
-      <Box sx={{ mt: 1 }}>{snippet.code}</Box>
+      {/* место для кода */}
+      <div className="snippet-card__code">{snippet.code}</div>
 
-      <Box sx={{ display: "flex", gap: 1, alignItems: "center", mt: 2 }}>
-        <IconButton onClick={handleLike} disabled={!user}>
-          <ThumbUpIcon />
-        </IconButton>
-        <Typography>{likesCount}</Typography>
+      <div className="snippet-card__footer">
+        <div className="snippet-card__likes">
+          <IconButton
+            onClick={handleLike}
+            disabled={!user}
+            size="small"
+            style={{ padding: "4px" }}
+          >
+            <ThumbUpIcon fontSize="small" />
+          </IconButton>
+          <Typography variant="body2">{likesCount}</Typography>
 
-        <IconButton onClick={handleDislike} disabled={!user}>
-          <ThumbDownIcon />
-        </IconButton>
-        <Typography>{dislikesCount}</Typography>
+          <IconButton
+            onClick={handleDislike}
+            disabled={!user}
+            size="small"
+            style={{ padding: "4px" }}
+          >
+            <ThumbDownIcon fontSize="small" />
+          </IconButton>
+          <Typography variant="body2">{dislikesCount}</Typography>
+        </div>
 
-        <Typography sx={{ ml: 2 }}>{commentsCount} comments</Typography>
-      </Box>
+        <span className="snippet-card__comments">{commentsCount} comments</span>
+      </div>
     </div>
   );
 };

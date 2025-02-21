@@ -1,17 +1,67 @@
 .snippet-card {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin: 16px auto;
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
   color: #000;
+}
 
+.snippet-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.snippet-card__author {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.snippet-card__language {
+  font-size: 14px;
+  color: #666;
+}
+
+.snippet-card__code {
+  background-color: #f8f8f8;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
-.snippet-card + .snippet-card {
-  margin-top: 16px;
+.snippet-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.snippet-card__likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.snippet-card__comments {
+  margin-left: auto;
+  font-size: 14px;
+  color: #666;
+}
+
+.snippet-card__icon-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.snippet-card__icon-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
