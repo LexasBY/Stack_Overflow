@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router";
 import { Layout } from "./Layout";
 import GuestOnly from "../shared/routeGuards/GuestOnly";
 import Modal from "../widgets/Modal";
+import AccountPage from "../pages/AccountPage/AccountPage";
 
 const Placeholder = ({ name }: { name: string }) => (
   <h2 style={{ color: "red" }}>{name} Page</h2>
@@ -11,7 +12,7 @@ export const Router = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Placeholder name="Home" />} />
-        <Route path="me" element={<Placeholder name="My Account" />} />
+        <Route path="me" element={<AccountPage />} />
         <Route
           path="snippet/new"
           element={<Placeholder name="New Snippet" />}
