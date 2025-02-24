@@ -6,6 +6,7 @@ import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { IconButton, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { useMarkSnippet, MarkType } from "../../hooks/useMarkSnippet";
 
 interface SnippetCardProps {
   snippet: Snippet;
@@ -13,6 +14,7 @@ interface SnippetCardProps {
 
 const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   const { data: user } = useCurrentUser();
+  const markMutation = useMarkSnippet();
 
   const likesCount = snippet.marks.filter((m) => m.type === "like").length;
   const dislikesCount = snippet.marks.filter(
@@ -20,13 +22,20 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   ).length;
   const commentsCount = snippet.comments.length;
 
-  const handleLike = () => {
-    // TODO: Реализовать логику лайка
+  const handleMark = (mark: MarkType) => {
+    if (user) {
+      markMutation.mutate({ id: snippet.id, mark });
+    }
   };
+  const userLike = user
+    ? snippet.marks.some((m) => m.user.id === user.id && m.type === "like")
+    : false;
+  const userDislike = user
+    ? snippet.marks.some((m) => m.user.id === user.id && m.type === "dislike")
+    : false;
 
-  const handleDislike = () => {
-    // TODO: Реализовать логику дизлайка
-  };
+  console.log("userLike", userLike);
+  console.log("userDislike", userDislike);
 
   const language = snippet.language.toLowerCase();
 
@@ -57,12 +66,22 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
 
       <div className="snippet-card__footer">
         <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-          <IconButton onClick={handleLike} disabled={!user} size="small">
+          <IconButton
+            onClick={() => handleMark("like")}
+            disabled={!user}
+            size="small"
+            sx={{ color: userLike ? "#1abc9c" : "#666" }}
+          >
             <ThumbUpIcon fontSize="small" />
           </IconButton>
           <Typography variant="body2">{likesCount}</Typography>
 
-          <IconButton onClick={handleDislike} disabled={!user} size="small">
+          <IconButton
+            onClick={() => handleMark("dislike")}
+            disabled={!user}
+            size="small"
+            sx={{ color: userDislike ? "red" : "#666" }}
+          >
             <ThumbDownIcon fontSize="small" />
           </IconButton>
           <Typography variant="body2">{dislikesCount}</Typography>
