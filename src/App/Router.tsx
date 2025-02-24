@@ -6,7 +6,7 @@ import AccountPage from "../pages/AccountPage";
 import ProtectedRoute from "../shared/routeGuards/ProtectedRoute";
 import HomePage from "../pages/HomePage";
 import CreateSnippetPage from "../pages/CreateSnippetPage";
-import MySnippetsPage from "../pages/MySnippetPage/MySnippetsPage";
+import MySnippetsPage from "../pages/MySnippetPage";
 
 const Placeholder = ({ name }: { name: string }) => (
   <h2 style={{ color: "red" }}>{name} Page</h2>
