@@ -48,7 +48,6 @@ interface SnippetsApiResponse {
 
 async function fetchSnippets(): Promise<Snippet[]> {
   const res = await instance.get<SnippetsApiResponse>("/snippets");
-  console.log(res.data.data.data);
   return res.data.data.data;
 }
 

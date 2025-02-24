@@ -7,9 +7,13 @@ export interface User {
   role: string;
 }
 
+interface UserResponse {
+  data: User;
+}
+
 async function fetchCurrentUser(): Promise<User> {
-  const response = await instance.get<User>("/auth");
-  return response.data;
+  const response = await instance.get<UserResponse>("/auth");
+  return response.data.data;
 }
 
 export function useCurrentUser() {

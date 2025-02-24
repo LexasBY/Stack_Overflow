@@ -16,6 +16,18 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   const { data: user } = useCurrentUser();
   const markMutation = useMarkSnippet();
 
+  const userLike = user
+    ? snippet.marks.some((m) => m.user.id === user.id && m.type === "like")
+    : false;
+
+  snippet.marks.forEach((m, i) => console.log(`Mark ${i}:`, m.user.id, m.type));
+
+  const userDislike = user
+    ? snippet.marks.some(
+        (m) => m.user.id === String(user.id) && m.type === "dislike"
+      )
+    : false;
+
   const likesCount = snippet.marks.filter((m) => m.type === "like").length;
   const dislikesCount = snippet.marks.filter(
     (m) => m.type === "dislike"
@@ -23,19 +35,12 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   const commentsCount = snippet.comments.length;
 
   const handleMark = (mark: MarkType) => {
-    if (user) {
-      markMutation.mutate({ id: snippet.id, mark });
+    if (!user) return;
+    if ((mark === "like" && userLike) || (mark === "dislike" && userDislike)) {
+      return;
     }
+    markMutation.mutate({ id: snippet.id, mark });
   };
-  const userLike = user
-    ? snippet.marks.some((m) => m.user.id === user.id && m.type === "like")
-    : false;
-  const userDislike = user
-    ? snippet.marks.some((m) => m.user.id === user.id && m.type === "dislike")
-    : false;
-
-  console.log("userLike", userLike);
-  console.log("userDislike", userDislike);
 
   const language = snippet.language.toLowerCase();
 
@@ -70,7 +75,7 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
             onClick={() => handleMark("like")}
             disabled={!user}
             size="small"
-            sx={{ color: userLike ? "#1abc9c" : "#666" }}
+            sx={{ color: userLike ? "#1abc1f" : "#666" }}
           >
             <ThumbUpIcon fontSize="small" />
           </IconButton>
@@ -80,7 +85,7 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
             onClick={() => handleMark("dislike")}
             disabled={!user}
             size="small"
-            sx={{ color: userDislike ? "red" : "#666" }}
+            sx={{ color: userDislike ? "#e74c3c" : "#666" }}
           >
             <ThumbDownIcon fontSize="small" />
           </IconButton>
