@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import SnippetList from "../../widgets/SnippetList/SnippetList";
+import NewSnippet from "../../widgets/NewSnippet";
 
 const HomePage: React.FC = () => {
   return (
@@ -9,10 +9,10 @@ const HomePage: React.FC = () => {
         variant="h4"
         sx={{ mb: 2, textAlign: "center", color: "#000" }}
       >
-        Welcome to Codelang!
+        Create new snippet!
       </Typography>
-      <div className="homepage__snippets-container">
-        <SnippetList />
+      <div className="new__snippet-container">
+        <NewSnippet />
       </div>
     </Box>
   );
