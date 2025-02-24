@@ -123,8 +123,8 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
           </IconButton>
           <Typography variant="body2">{dislikesCount}</Typography>
         </Box>
-        // ToDo - реализовать комменты как ссылку на страницу (см. Post Page) +
-        socket.io
+        {/* ToDo - реализовать комменты как ссылку на страницу (см. Post Page) +
+        socket.io */}
         <Typography variant="body2" sx={{ marginLeft: "auto" }}>
           {commentsCount} comments
         </Typography>

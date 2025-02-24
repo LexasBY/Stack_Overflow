@@ -30,7 +30,7 @@ export interface Snippet {
   comments: Comment[];
 }
 
-interface SnippetsApiResponse {
+export interface SnippetsApiResponse {
   data: {
     data: Snippet[];
     meta: {

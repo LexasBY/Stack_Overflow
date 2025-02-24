@@ -1,20 +1,20 @@
 import React from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
-import { useSnippets } from "../../hooks/useSnippets";
+import { Box, Typography } from "@mui/material";
 import SnippetCard from "../SnippetCard/SnippetCard";
+import { Snippet } from "../../hooks/useSnippets";
 
-const SnippetList: React.FC = () => {
-  const { data, isLoading, isError } = useSnippets();
+interface SnippetListProps {
+  snippets: Snippet[];
+}
 
-  if (isLoading) return <CircularProgress />;
-  if (isError)
-    return <Typography color="error">Error loading snippets</Typography>;
-  if (!data || data.length === 0)
+const SnippetList: React.FC<SnippetListProps> = ({ snippets }) => {
+  if (!snippets || snippets.length === 0) {
     return <Typography>No snippets available</Typography>;
+  }
 
   return (
     <Box>
-      {data.map((snippet) => (
+      {snippets.map((snippet) => (
         <SnippetCard key={snippet.id} snippet={snippet} />
       ))}
     </Box>
