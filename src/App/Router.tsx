@@ -7,6 +7,7 @@ import ProtectedRoute from "../shared/routeGuards/ProtectedRoute";
 import HomePage from "../pages/HomePage";
 import CreateSnippetPage from "../pages/CreateSnippetPage";
 import MySnippetsPage from "../pages/MySnippetPage";
+import PostPage from "../pages/PostPage/";
 
 const Placeholder = ({ name }: { name: string }) => (
   <h2 style={{ color: "red" }}>{name} Page</h2>
@@ -19,11 +20,13 @@ export const Router = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="me" element={<AccountPage />} />
+          <Route path="snippets/:id" element={<PostPage />} />
         </Route>
 
         <Route path="snippet/new" element={<CreateSnippetPage />} />
 
         <Route path="snippets/me" element={<MySnippetsPage />} />
+
         <Route path="questions" element={<Placeholder name="Questions" />} />
         <Route path="users" element={<Placeholder name="All Users" />} />
 

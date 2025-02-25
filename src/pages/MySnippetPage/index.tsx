@@ -35,7 +35,10 @@ const MySnippetsPage: React.FC = () => {
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" sx={{ mb: 2, textAlign: "center" }}>
+      <Typography
+        variant="h4"
+        sx={{ mb: 2, textAlign: "center", color: "#000" }}
+      >
         My Snippets
       </Typography>
 
