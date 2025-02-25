@@ -1,10 +1,11 @@
 import "./header.css";
-import { Link } from "react-router"; // Используйте react-router-dom!
+import { Link, useLocation } from "react-router";
 import { Button } from "@mui/material";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useLogout } from "../../hooks/useLogout";
 
 const Header = () => {
+  const location = useLocation();
   const { data: user, isLoading } = useCurrentUser();
   const logoutMutation = useLogout();
   const isLogoutLoading = logoutMutation.status === "pending";
@@ -34,6 +35,8 @@ const Header = () => {
     },
   };
 
+  const isQuestionsPage = location.pathname === "/questions";
+
   return (
     <header className="header">
       <div className="container header__container">
@@ -42,7 +45,15 @@ const Header = () => {
           <h2 className="name header__name">CODELANG</h2>
         </Link>
 
-        <div className="header__right">
+        <div className="header__right" style={{ display: "flex", gap: "16px" }}>
+          {user && isQuestionsPage && (
+            <Link to="/questions/new">
+              <Button variant="contained" sx={buttonSx}>
+                Ask question
+              </Button>
+            </Link>
+          )}
+
           {user ? (
             <Button
               variant="contained"
@@ -59,6 +70,7 @@ const Header = () => {
               </Button>
             </Link>
           )}
+
           <div className="language">
             <div className="language__svg">🌍</div>
             <span className="name language__name">EN</span>
