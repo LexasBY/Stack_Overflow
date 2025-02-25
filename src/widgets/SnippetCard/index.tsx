@@ -7,6 +7,7 @@ import { IconButton, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useMarkSnippet, MarkType } from "../../hooks/useMarkSnippet";
+import { Link } from "react-router";
 
 interface SnippetCardProps {
   snippet: Snippet;
@@ -87,7 +88,7 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
       <Box className="snippet-card__code-container" sx={{ marginBottom: 2 }}>
         <Editor
           height="250px"
-          width="1000px"
+          width="100%"
           defaultLanguage={language}
           value={snippet.code}
           options={{
@@ -123,10 +124,8 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
           </IconButton>
           <Typography variant="body2">{dislikesCount}</Typography>
         </Box>
-        {/* ToDo - реализовать комменты как ссылку на страницу (см. Post Page) +
-        socket.io */}
         <Typography variant="body2" sx={{ marginLeft: "auto" }}>
-          {commentsCount} comments
+          <Link to={`/snippets/${snippet.id}`}>{commentsCount} comments</Link>
         </Typography>
       </div>
     </div>

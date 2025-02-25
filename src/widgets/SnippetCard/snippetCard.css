@@ -1,7 +1,7 @@
 .snippet-card {
-  max-width: 1600px;
+  width: 1000px;
   margin: 16px auto;
-  padding: 16px;
+  padding: 24px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #fff;
@@ -13,27 +13,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .snippet-card__author {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .snippet-card__language {
-  font-size: 14px;
-  color: #888;
+  font-size: 16px;
+  color: #666;
+}
+
+.snippet-card__code-container {
+  margin-bottom: 16px;
 }
 
 .snippet-card__code {
-  background-color: #f5f5f5;
-  padding: 12px;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  font-family: "Source Code Pro", monospace;
-  font-size: 14px;
-  line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -42,20 +39,20 @@
 .snippet-card__footer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   border-top: 1px solid #e0e0e0;
-  padding-top: 8px;
+  padding-top: 12px;
 }
 
 .snippet-card__likes {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .snippet-card__comments {
   margin-left: auto;
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
 }
 
@@ -64,8 +61,8 @@
   background: none;
   cursor: pointer;
   color: #666;
-  font-size: 0.9rem;
-  padding: 4px;
+  font-size: 1rem;
+  padding: 8px;
 }
 
 .snippet-card__icon-btn:disabled {
