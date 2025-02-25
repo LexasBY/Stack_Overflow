@@ -9,10 +9,9 @@ import CreateSnippetPage from "../pages/CreateSnippetPage";
 import MySnippetsPage from "../pages/MySnippetPage";
 import PostPage from "../pages/PostPage/";
 import UsersPage from "../pages/UsersPage";
+import QuestionsPage from "../pages/QuestionPage";
+import CreateQuestionPage from "../pages/CreateQuestionPage";
 
-const Placeholder = ({ name }: { name: string }) => (
-  <h2 style={{ color: "red" }}>{name} Page</h2>
-);
 export const Router = () => {
   return (
     <Routes>
@@ -22,13 +21,14 @@ export const Router = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="me" element={<AccountPage />} />
           <Route path="snippets/:id" element={<PostPage />} />
+          <Route path="/questions/new" element={<CreateQuestionPage />} />
         </Route>
 
         <Route path="snippet/new" element={<CreateSnippetPage />} />
 
         <Route path="snippets/me" element={<MySnippetsPage />} />
 
-        <Route path="questions" element={<Placeholder name="Questions" />} />
+        <Route path="questions" element={<QuestionsPage />} />
         <Route path="users" element={<UsersPage />} />
 
         <Route element={<GuestOnly />}>
