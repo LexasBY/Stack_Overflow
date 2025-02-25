@@ -13,15 +13,14 @@ const menuItems = [
 
 const Menu = () => {
   const { data: user, isLoading } = useCurrentUser();
-
+  const protectedPaths = ["/me", "/snippet/new", "/snippets/me"];
   return (
     <nav className="menu">
       <ul className="menu__list">
         {menuItems.map(({ path, label, icon }) => {
-          if (path === "/me" && (isLoading || !user)) {
+          if (protectedPaths.includes(path) && (isLoading || !user)) {
             return null;
           }
-
           return (
             <li key={path} className="menu__item">
               <NavLink
