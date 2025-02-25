@@ -3,8 +3,8 @@ import { Box, Typography, CircularProgress, Paper } from "@mui/material";
 import { useAccountInfo } from "../../hooks/useMe";
 import { useUserStatistic } from "../../hooks/useUserStatistics";
 import AccountPageHeader from "./AccountPageHeader";
-import EditProfileForm from "../../widgets/EditProfileForm/EditProfileForm";
-import ChangePasswordForm from "../../widgets/ChangePasswordForm/ChangePasswordForm";
+import EditProfileForm from "../../widgets/EditProfileForm";
+import ChangePasswordForm from "../../widgets/ChangePasswordForm";
 import "./accountPage.css";
 
 const AccountPage: React.FC = () => {

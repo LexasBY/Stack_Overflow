@@ -1,15 +1,24 @@
 import React from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
-import { useSnippets } from "../../hooks/useSnippets";
+import { Box, CircularProgress, Typography, Button } from "@mui/material";
+import { useSnippetsInfinite } from "../../hooks/useSnippetsInfinite";
 import SnippetList from "../../widgets/SnippetList/SnippetList";
 
 const HomePage: React.FC = () => {
-  const { data, isLoading, isError } = useSnippets();
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useSnippetsInfinite();
 
   if (isLoading) return <CircularProgress />;
   if (isError)
     return <Typography color="error">Error loading snippets</Typography>;
   if (!data) return null;
+
+  const snippets = data.pages.flatMap((page) => page.data);
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -20,7 +29,19 @@ const HomePage: React.FC = () => {
         Welcome to Codelang!
       </Typography>
 
-      <SnippetList snippets={data} />
+      <SnippetList snippets={snippets} />
+
+      {hasNextPage && (
+        <Box sx={{ textAlign: "center", mt: 2 }}>
+          <Button
+            variant="contained"
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? "Loading more..." : "Load more"}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

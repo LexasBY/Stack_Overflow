@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import SnippetCard from "../SnippetCard/SnippetCard";
-import { Snippet } from "../../hooks/useSnippets";
+import SnippetCard from "../SnippetCard";
+import { Snippet } from "../../hooks/useSnippetsInfinite";
 
 interface SnippetListProps {
   snippets: Snippet[];

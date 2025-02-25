@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./snippetCard.css";
 import { Editor } from "@monaco-editor/react";
-import { Snippet } from "../../hooks/useSnippets";
+import { Snippet } from "../../hooks/useSnippetsInfinite";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { IconButton, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";

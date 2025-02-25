@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "../api/config";
-import { Snippet, SnippetsApiResponse } from "./useSnippets";
+import { Snippet, SnippetsApiResponse } from "./useSnippetsInfinite";
 
 async function fetchMySnippets(userId: string): Promise<Snippet[]> {
   const res = await instance.get<SnippetsApiResponse>(
