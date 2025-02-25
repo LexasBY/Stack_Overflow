@@ -125,7 +125,13 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
           <Typography variant="body2">{dislikesCount}</Typography>
         </Box>
         <Typography variant="body2" sx={{ marginLeft: "auto" }}>
-          <Link to={`/snippets/${snippet.id}`}>{commentsCount} comments</Link>
+          {user ? (
+            <Link to={`/snippets/${snippet.id}`}>{commentsCount} comments</Link>
+          ) : (
+            <Typography variant="body2" color="textSecondary">
+              {commentsCount} comments
+            </Typography>
+          )}
         </Typography>
       </div>
     </div>

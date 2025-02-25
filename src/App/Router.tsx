@@ -20,13 +20,13 @@ export const Router = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="me" element={<AccountPage />} />
+          <Route path="snippets/:id" element={<PostPage />} />
         </Route>
 
         <Route path="snippet/new" element={<CreateSnippetPage />} />
 
         <Route path="snippets/me" element={<MySnippetsPage />} />
 
-        <Route path="snippets/:id" element={<PostPage />} />
         <Route path="questions" element={<Placeholder name="Questions" />} />
         <Route path="users" element={<Placeholder name="All Users" />} />
 

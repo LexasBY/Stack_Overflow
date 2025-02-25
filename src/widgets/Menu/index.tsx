@@ -1,4 +1,3 @@
-// src/widgets/Menu/Menu.tsx
 import "./menu.css";
 import { NavLink } from "react-router";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
@@ -19,7 +18,7 @@ const Menu = () => {
     <nav className="menu">
       <ul className="menu__list">
         {menuItems.map(({ path, label, icon }) => {
-          if (path === "/me" && !isLoading && !user) {
+          if (path === "/me" && (isLoading || !user)) {
             return null;
           }
 
