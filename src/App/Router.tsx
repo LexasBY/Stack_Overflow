@@ -8,6 +8,7 @@ import HomePage from "../pages/HomePage";
 import CreateSnippetPage from "../pages/CreateSnippetPage";
 import MySnippetsPage from "../pages/MySnippetPage";
 import PostPage from "../pages/PostPage/";
+import UsersPage from "../pages/UsersPage";
 
 const Placeholder = ({ name }: { name: string }) => (
   <h2 style={{ color: "red" }}>{name} Page</h2>
@@ -28,7 +29,7 @@ export const Router = () => {
         <Route path="snippets/me" element={<MySnippetsPage />} />
 
         <Route path="questions" element={<Placeholder name="Questions" />} />
-        <Route path="users" element={<Placeholder name="All Users" />} />
+        <Route path="users" element={<UsersPage />} />
 
         <Route element={<GuestOnly />}>
           <Route path="/login" element={<Modal />} />
