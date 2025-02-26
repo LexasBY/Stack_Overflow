@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./snippetCard.css";
 import { Editor } from "@monaco-editor/react";
-import { useCurrentUser } from "../../../hooks/useCurrentUser";
+import { useCurrentUser } from "../../../../entities/user/model/useCurrentUser";
 import { IconButton, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { useMarkSnippet, MarkType } from "../../../hooks/useMarkSnippet";
+import { useMarkSnippet, MarkType } from "../../model/useMarkSnippet";
 import { Link } from "react-router";
-import { Snippet } from "../../../entities/snippet/snippet.types";
+import { Snippet } from "../../../../entities/snippet/snippet.types";
 
 interface SnippetCardProps {
   snippet: Snippet;

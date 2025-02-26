@@ -2,8 +2,8 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router";
-import Login from "../../features/auth/Login";
-import Register from "../../features/auth/Register";
+import Login from "../../features/auth/ui/Login";
+import Register from "../../features/auth/ui/Register";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import "./modal.css";

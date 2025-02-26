@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useLogout } from "../../../features/auth/Logout/useLogout";
+import { useLogout } from "../../../features/auth/model/useLogout";
 import "./accountPageHeader.css";
 
 export interface AccountPageHeaderProps {

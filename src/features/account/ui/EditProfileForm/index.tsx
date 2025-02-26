@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import * as Yup from "yup";
-import { useChangeUsername } from "../../hooks/useChangeUsername";
+import { useChangeUsername } from "../../model/useChangeUsername";
 import { AxiosError } from "axios";
 
 interface ErrorResponse {

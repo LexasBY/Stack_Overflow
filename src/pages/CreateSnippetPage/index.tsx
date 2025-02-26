@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import NewSnippet from "../../features/snippets/NewSnippet";
+import NewSnippet from "../../features/snippets/ui/NewSnippet";
 
 const CreateSnippetPage: React.FC = () => {
   return (

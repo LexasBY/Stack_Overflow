@@ -2,7 +2,7 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router";
 import { CircularProgress } from "@mui/material";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { useCurrentUser } from "../../entities/user/model/useCurrentUser";
 
 const ProtectedRoute: React.FC = () => {
   const { data: user, isLoading } = useCurrentUser();

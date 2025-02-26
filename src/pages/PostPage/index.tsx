@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router"; // используем react-router-dom
 import { Box, CircularProgress, Typography, Button } from "@mui/material";
-import { useSnippetDetail } from "../../hooks/useSnippetDetail";
-import SnippetCard from "../../features/snippets/SnippetCard";
+import { useSnippetDetail } from "../../features/snippets/model/useSnippetDetail";
+import SnippetCard from "../../features/snippets/ui/SnippetCard";
 import PostCommentSection from "../../features/comments/CommentSection";
 
 const PostPage: React.FC = () => {

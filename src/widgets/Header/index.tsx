@@ -1,8 +1,8 @@
 import "./header.css";
 import { Link, useLocation } from "react-router";
 import { Button } from "@mui/material";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
-import { useLogout } from "../../features/auth/Logout/useLogout";
+import { useCurrentUser } from "../../entities/user/model/useCurrentUser";
+import { useLogout } from "../../features/auth/model/useLogout";
 
 const Header = () => {
   const location = useLocation();

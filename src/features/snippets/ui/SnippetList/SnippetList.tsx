@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import SnippetCard from "../SnippetCard";
-import { Snippet } from "../../../entities/snippet/snippet.types";
+import { Snippet } from "../../../../entities/snippet/snippet.types";
 
 interface SnippetListProps {
   snippets: Snippet[];

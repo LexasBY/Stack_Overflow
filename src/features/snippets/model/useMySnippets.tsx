@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "../App/providers/config";
+import { instance } from "../../../App/providers/config";
 import {
   Snippet,
   SnippetsApiResponse,
-} from "../entities/snippet/snippet.types";
+} from "../../../entities/snippet/snippet.types";
 
 async function fetchMySnippets(userId: string): Promise<Snippet[]> {
   const res = await instance.get<SnippetsApiResponse>(

@@ -1,7 +1,7 @@
 // src/components/GuestOnly.tsx
 import { Navigate, Outlet } from "react-router";
 import { CircularProgress } from "@mui/material";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { useCurrentUser } from "../../entities/user/model/useCurrentUser";
 
 const GuestOnly = () => {
   const { data: user, isLoading } = useCurrentUser();

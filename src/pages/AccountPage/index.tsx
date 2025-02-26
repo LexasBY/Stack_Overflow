@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Typography, CircularProgress, Paper } from "@mui/material";
-import { useAccountInfo } from "../../hooks/useMe";
-import { useUserStatistic } from "../../hooks/useUserStatistics";
+import { useAccountInfo } from "../../features/account/model/useMe";
+import { useUserStatistic } from "../../features/account/model/useUserStatistics";
 import AccountPageHeader from "./AccountPageHeader";
-import EditProfileForm from "../../widgets/EditProfileForm";
-import ChangePasswordForm from "../../widgets/ChangePasswordForm";
+import EditProfileForm from "../../features/account/ui/EditProfileForm";
+import ChangePasswordForm from "../../features/account/ui/ChangePasswordForm";
 import "./accountPage.css";
 
 const AccountPage: React.FC = () => {

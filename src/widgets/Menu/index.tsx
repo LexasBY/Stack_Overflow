@@ -1,6 +1,6 @@
 import "./menu.css";
 import { NavLink } from "react-router";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { useCurrentUser } from "../../entities/user/model/useCurrentUser";
 
 const menuItems = [
   { path: "/", label: "Home", icon: "🏠" },

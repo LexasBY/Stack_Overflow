@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
-import { useMySnippets } from "../../hooks/useMySnippets";
-import MySnippetsList from "../../features/snippets/MySnippetsList/MySnippetsList";
+import { useCurrentUser } from "../../entities/user/model/useCurrentUser";
+import { useMySnippets } from "../../features/snippets/model/useMySnippets";
+import MySnippetsList from "../../features/snippets/ui/MySnippetsList/MySnippetsList";
 
 const MySnippetsPage: React.FC = () => {
   const { data: user } = useCurrentUser();

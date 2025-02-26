@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import * as Yup from "yup";
-import { useChangePassword } from "../../hooks/useChangePassword";
+import { useChangePassword } from "../../model/useChangePassword";
 import { AxiosError } from "axios";
 
 const schema = Yup.object().shape({
