@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { instance } from "../App/providers/config";
+import { instance } from "../../../App/providers/config";
 
 export interface ChangePasswordData {
   oldPassword: string;
