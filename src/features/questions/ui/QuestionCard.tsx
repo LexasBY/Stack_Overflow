@@ -1,14 +1,27 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import { Question } from "../../features/questions/useQuestionsInfinite";
+import { Box, Typography, IconButton } from "@mui/material";
 import { Editor } from "@monaco-editor/react";
+import EditIcon from "@mui/icons-material/Edit";
+import { useNavigate } from "react-router";
+import { useCurrentUser } from "../../../entities/user/model/useCurrentUser";
+import { Question } from "../model/useQuestionsInfinite";
 
 interface QuestionCardProps {
   question: Question;
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
+  const { data: currentUser } = useCurrentUser();
+  const navigate = useNavigate();
+
+  const isAuthor = currentUser && currentUser.id === question.user.id;
+
+  const handleEdit = () => {
+    navigate(`/questions/${question.id}/edit`);
+  };
+
   const language = question.attachedCode ? "javascript" : undefined;
+
   return (
     <Box
       sx={{
@@ -20,18 +33,28 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
         width: "1100px",
       }}
     >
-      <Typography variant="h6" sx={{ color: "#000", fontWeight: "bold" }}>
-        {question.title}
-      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+        <Typography variant="h6" sx={{ color: "#000", fontWeight: "bold" }}>
+          {question.title}
+        </Typography>
+        {isAuthor && (
+          <IconButton onClick={handleEdit} sx={{ ml: 1 }}>
+            <EditIcon />
+          </IconButton>
+        )}
+      </Box>
+
       <Typography variant="body2" sx={{ color: "#666", mb: 1 }}>
         asked by {question.user.username}
       </Typography>
+
       <Typography
         variant="body1"
         sx={{ color: "#000", whiteSpace: "pre-wrap", mb: 2 }}
       >
         {question.description}
       </Typography>
+
       {question.attachedCode && question.attachedCode.trim() !== "" && (
         <Box sx={{ mb: 2 }}>
           <Editor

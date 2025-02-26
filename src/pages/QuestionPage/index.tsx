@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, CircularProgress, Typography, Button } from "@mui/material";
-import { useQuestionsInfinite } from "../../features/questions/useQuestionsInfinite";
-import QuestionCard from "../../features/questions/QuestionCard";
+import { useQuestionsInfinite } from "../../features/questions/model/useQuestionsInfinite";
+import QuestionCard from "../../features/questions/ui/QuestionCard";
 
 const QuestionsPage: React.FC = () => {
   const {

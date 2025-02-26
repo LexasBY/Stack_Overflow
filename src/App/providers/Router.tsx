@@ -12,6 +12,7 @@ import UsersPage from "../../pages/UsersPage";
 import QuestionsPage from "../../pages/QuestionPage";
 import CreateQuestionPage from "../../pages/CreateQuestionPage";
 import EditSnippetPage from "../../pages/EditSnippetPage";
+import EditQuestionPage from "../../pages/EditQuestionPage";
 
 export const Router = () => {
   return (
@@ -24,6 +25,7 @@ export const Router = () => {
           <Route path="snippets/:id" element={<PostPage />} />
           <Route path="/questions/new" element={<CreateQuestionPage />} />
           <Route path="snippets/:id/edit" element={<EditSnippetPage />} />
+          <Route path="/questions/:id/edit" element={<EditQuestionPage />} />
         </Route>
 
         <Route path="snippet/new" element={<CreateSnippetPage />} />
