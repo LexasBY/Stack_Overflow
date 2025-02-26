@@ -1,7 +1,7 @@
 import { Box, Typography, Button, TextField, Link } from "@mui/material";
 import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { useLogin, LoginInput } from "../../hooks/useLogin";
+import { useLogin, LoginInput } from "../Login/useLogin";
 import { AxiosError } from "axios";
 import "./login.css";
 

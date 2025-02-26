@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "../api/config";
-import { Snippet } from "./useSnippetsInfinite";
+import { instance } from "../App/providers/config";
+import { Snippet } from "../entities/snippet/snippet.types";
 
 interface SnippetDetailResponse {
   data: Snippet;

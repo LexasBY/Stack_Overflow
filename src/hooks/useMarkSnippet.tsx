@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { instance } from "../api/config";
+import { instance } from "../App/providers/config";
 import { AxiosError } from "axios";
 
 export type MarkType = "like" | "dislike";

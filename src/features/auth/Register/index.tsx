@@ -2,7 +2,7 @@ import { Box, Typography, Button, TextField, Link } from "@mui/material";
 import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Link as RouterLink } from "react-router";
-import { useRegister, RegisterInput } from "../../hooks/useRegister";
+import { useRegister, RegisterInput } from "../../auth/Register/useRegister";
 import { AxiosError } from "axios";
 import "./register.css";
 

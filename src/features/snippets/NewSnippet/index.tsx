@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
 import { Editor } from "@monaco-editor/react";
-import { useCreateSnippet } from "../../hooks/useCreateSnippet";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { useCreateSnippet } from "../../../hooks/useCreateSnippet";
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
 import { useNavigate } from "react-router";
 
 const LANGUAGES = ["JavaScript", "TypeScript", "Python", "Java", "C#", "Go"];

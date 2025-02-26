@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { instance } from "../api/config";
+import { instance } from "../App/providers/config";
 
 export interface ChangeUsernameData {
   username: string;

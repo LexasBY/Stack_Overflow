@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { instance } from "../api/config";
+import { instance } from "../App/providers/config";
 import { AxiosError } from "axios";
 
 export interface CreateSnippetData {
@@ -35,7 +35,7 @@ async function createSnippet(
     "/snippets",
     payload
   );
-  return res.data; // { data: { id, code, language, user } }
+  return res.data;
 }
 
 export function useCreateSnippet() {

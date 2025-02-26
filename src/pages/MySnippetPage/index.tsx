@@ -1,13 +1,11 @@
-// src/pages/MySnippetsPage/MySnippetsPage.tsx
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useMySnippets } from "../../hooks/useMySnippets";
-import SnippetList from "../../widgets/SnippetList/SnippetList";
+import MySnippetsList from "../../features/snippets/MySnippetsList/MySnippetsList";
 
 const MySnippetsPage: React.FC = () => {
   const { data: user } = useCurrentUser();
-
   const { data, isLoading, isError } = useMySnippets(user?.id || "");
 
   if (!user) {
@@ -25,13 +23,6 @@ const MySnippetsPage: React.FC = () => {
   if (isLoading) return <CircularProgress />;
   if (isError)
     return <Typography color="error">Error loading your snippets</Typography>;
-  if (!data || data.length === 0) {
-    return (
-      <Typography variant="body1" sx={{ textAlign: "center", mt: 4 }}>
-        You haven't created any snippets yet.
-      </Typography>
-    );
-  }
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -41,8 +32,7 @@ const MySnippetsPage: React.FC = () => {
       >
         My Snippets
       </Typography>
-
-      <SnippetList snippets={data} />
+      <MySnippetsList snippets={data || []} />
     </Box>
   );
 };

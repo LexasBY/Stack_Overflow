@@ -2,7 +2,7 @@ import "./header.css";
 import { Link, useLocation } from "react-router";
 import { Button } from "@mui/material";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
-import { useLogout } from "../../hooks/useLogout";
+import { useLogout } from "../../features/auth/Logout/useLogout";
 
 const Header = () => {
   const location = useLocation();

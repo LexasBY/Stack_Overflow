@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "../api/config";
+import { instance } from "../App/providers/config";
 
 export interface UserStatistic {
   rating: number;

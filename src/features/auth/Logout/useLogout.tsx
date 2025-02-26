@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 //import { useNavigate } from "react-router";
-import { instance } from "../api/config";
+import { instance } from "../../../App/providers/config";
 
 type LogoutError = AxiosError<unknown>;
 
