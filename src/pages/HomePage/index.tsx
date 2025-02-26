@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, CircularProgress, Typography, Button } from "@mui/material";
-import { useSnippetsInfinite } from "../../hooks/useSnippetsInfinite";
-import SnippetList from "../../widgets/SnippetList/SnippetList";
+import { useSnippetsInfinite } from "../../features/snippets/model/useSnippetsInfinite";
+import SnippetList from "../../features/snippets/ui/SnippetList/SnippetList";
 
 const HomePage: React.FC = () => {
   const {

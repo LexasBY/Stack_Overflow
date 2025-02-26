@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
-import Header from "../widgets/Header";
-import Menu from "../widgets/Menu";
+import Header from "../shared/ui/Header/index";
+import Menu from "../shared/ui/Menu";
 import "./layout.css";
-// Outlet, Protected route, styled components
+
 export const Layout = () => {
   return (
     <div id="layout" className="layout">

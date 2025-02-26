@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, CircularProgress, Typography, Button } from "@mui/material";
-import { Editor } from "@monaco-editor/react";
-import { useQuestionsInfinite } from "../../hooks/useQuestionsInfinite";
+import { useQuestionsInfinite } from "../../features/questions/model/useQuestionsInfinite";
+import QuestionCard from "../../features/questions/ui/QuestionCard";
 
 const QuestionsPage: React.FC = () => {
   const {
@@ -21,7 +21,7 @@ const QuestionsPage: React.FC = () => {
   const questions = data.pages.flatMap((page) => page.data);
 
   return (
-    <Box sx={{ padding: 2, width: "1200px", margin: "0 auto" }}>
+    <Box sx={{ padding: 2, maxWidth: 1200, margin: "0 auto" }}>
       <Typography
         variant="h4"
         sx={{ mb: 2, textAlign: "center", color: "#000" }}
@@ -30,45 +30,7 @@ const QuestionsPage: React.FC = () => {
       </Typography>
 
       {questions.map((q) => (
-        <Box
-          key={q.id}
-          sx={{
-            mb: 2,
-            p: 2,
-            border: "1px solid #e0e0e0",
-            borderRadius: "8px",
-            backgroundColor: "#fff",
-          }}
-        >
-          <Typography variant="h6" sx={{ color: "#000", fontWeight: "bold" }}>
-            {q.title}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "#666", mb: 1 }}>
-            asked by user: {q.user.username}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ color: "#000", whiteSpace: "pre-wrap", mb: 2 }}
-          >
-            {q.description}
-          </Typography>
-
-          {q.attachedCode && q.attachedCode.trim() !== "" && (
-            <Box sx={{ mb: 2 }}>
-              <Editor
-                height="200px"
-                width="100%"
-                defaultLanguage="javascript"
-                value={q.attachedCode}
-                options={{
-                  readOnly: true,
-                  minimap: { enabled: false },
-                  scrollBeyondLastLine: false,
-                }}
-              />
-            </Box>
-          )}
-        </Box>
+        <QuestionCard key={q.id} question={q} />
       ))}
 
       {hasNextPage && (

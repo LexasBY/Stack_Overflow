@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import NewSnippet from "../../widgets/NewSnippet";
+import NewSnippet from "../../features/snippets/ui/NewSnippet";
 
-const HomePage: React.FC = () => {
+const CreateSnippetPage: React.FC = () => {
   return (
     <Box sx={{ padding: 2 }}>
       <Typography
@@ -18,4 +18,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default CreateSnippetPage;
