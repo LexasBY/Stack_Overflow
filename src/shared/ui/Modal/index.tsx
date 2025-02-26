@@ -1,4 +1,3 @@
-// src/widgets/Modal.tsx
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router";
