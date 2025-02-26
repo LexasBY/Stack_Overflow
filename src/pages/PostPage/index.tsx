@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { Box, CircularProgress, Typography, Button } from "@mui/material";
 import { useSnippetDetail } from "../../features/snippets/model/useSnippetDetail";
 import SnippetCard from "../../features/snippets/ui/SnippetCard";
-import PostCommentSection from "../../features/comments/CommentSection";
+import PostCommentSection from "../../features/comments/ui/CommentSection";
 
 const PostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

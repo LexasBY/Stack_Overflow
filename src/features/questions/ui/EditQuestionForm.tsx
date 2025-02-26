@@ -10,6 +10,7 @@ import { Editor } from "@monaco-editor/react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useUpdateQuestion } from "../model/useUpdateQuestion";
+import { useNavigate } from "react-router";
 
 interface EditQuestionFormProps {
   initialValues: {
@@ -32,29 +33,44 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({
   onSuccess,
 }) => {
   const updateQuestionMutation = useUpdateQuestion();
+  const navigate = useNavigate();
+
+  const handleSubmit = (
+    values: EditQuestionFormProps["initialValues"],
+    resetForm: () => void
+  ) => {
+    updateQuestionMutation.mutate(values, {
+      onSuccess: () => {
+        resetForm();
+        if (onSuccess) onSuccess();
+      },
+    });
+  };
 
   return (
     <Box sx={{ width: "1100px" }}>
+      <Typography
+        variant="h5"
+        sx={{ mb: 2, textAlign: "center", color: "#000" }}
+      >
+        Edit question
+      </Typography>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          updateQuestionMutation.mutate(values, {
-            onSuccess: () => {
-              if (onSuccess) onSuccess();
-            },
-          });
-        }}
+        onSubmit={(values, { resetForm }) => handleSubmit(values, resetForm)}
       >
         {({
           values,
+          resetForm,
           setFieldValue,
           errors,
           touched,
           isSubmitting,
           handleSubmit,
         }) => (
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} style={{ width: "100%" }}>
             <TextField
               label="Question title"
               name="title"
@@ -107,9 +123,8 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({
               <Button
                 variant="outlined"
                 onClick={() => {
-                  setFieldValue("title", initialValues.title);
-                  setFieldValue("description", initialValues.description);
-                  setFieldValue("attachedCode", initialValues.attachedCode);
+                  resetForm();
+                  navigate(-1);
                 }}
               >
                 Cancel
@@ -127,7 +142,6 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({
               </Button>
             </Box>
 
-            {/* Ошибка при мутации */}
             {updateQuestionMutation.isError && (
               <Typography variant="body2" color="error" sx={{ mt: 2 }}>
                 {updateQuestionMutation.error?.message ||

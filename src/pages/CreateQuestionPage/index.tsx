@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router";
-import CreateQuestionForm from "../../features/create-question/CreateQuestionForm";
+import CreateQuestionForm from "../../features/questions/ui/CreateQuestionForm";
 
 const CreateQuestionPage: React.FC = () => {
   const navigate = useNavigate();

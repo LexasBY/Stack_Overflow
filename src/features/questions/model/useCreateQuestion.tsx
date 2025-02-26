@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { instance } from "../../App/providers/config";
+import { instance } from "../../../App/providers/config";
 
 export interface CreateQuestionPayload {
   title: string;

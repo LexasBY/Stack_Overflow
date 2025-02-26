@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import CommentList from "./CommentList";
-import { useCreateComment } from "../../features/comments/useCreateComment";
-import { Snippet } from "../../entities/snippet/snippet.types";
+import { useCreateComment } from "../../comments/model/useCreateComment";
+import { Snippet } from "../../../entities/snippet/snippet.types";
 
 interface CommentSectionProps {
   snippet: Snippet;

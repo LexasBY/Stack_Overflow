@@ -10,7 +10,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { User } from "./useUsers";
+import { User } from "../model/useUsers";
 
 interface UsersTableProps {
   users: User[];

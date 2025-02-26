@@ -9,7 +9,7 @@ import {
 import { Editor } from "@monaco-editor/react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useCreateQuestion } from "../../features/create-question/useCreateQuestion";
+import { useCreateQuestion } from "../../questions/model/useCreateQuestion";
 
 interface FormValues {
   title: string;

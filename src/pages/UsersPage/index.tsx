@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { useUsers } from "../../features/users/useUsers";
-import UsersTable from "../../features/users/UsersTable";
+import { useUsers } from "../../features/users/model/useUsers";
+import UsersTable from "../../features/users/ui/UsersTable";
 
 const UsersPage: React.FC = () => {
   const { data: users, isLoading, isError } = useUsers();
