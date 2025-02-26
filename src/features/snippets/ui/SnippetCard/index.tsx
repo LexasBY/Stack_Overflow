@@ -5,8 +5,9 @@ import { useCurrentUser } from "../../../../entities/user/model/useCurrentUser";
 import { IconButton, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import EditIcon from "@mui/icons-material/Edit";
 import { useMarkSnippet, MarkType } from "../../model/useMarkSnippet";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Snippet } from "../../../../entities/snippet/snippet.types";
 
 interface SnippetCardProps {
@@ -16,6 +17,7 @@ interface SnippetCardProps {
 const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   const { data: user } = useCurrentUser();
   const markMutation = useMarkSnippet();
+  const navigate = useNavigate();
 
   const [localMarks, setLocalMarks] = useState(snippet.marks);
 
@@ -37,6 +39,8 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
   const likesCount = localMarks.filter((m) => m.type === "like").length;
   const dislikesCount = localMarks.filter((m) => m.type === "dislike").length;
   const commentsCount = snippet.comments.length;
+
+  const isAuthor = user && snippet.user.id === user.id;
 
   const handleMark = (mark: MarkType) => {
     if (!user) return;
@@ -62,6 +66,10 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
         },
       }
     );
+  };
+
+  const handleEdit = () => {
+    navigate(`/snippets/${snippet.id}/edit`);
   };
 
   const language = snippet.language.toLowerCase();
@@ -124,6 +132,7 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
           </IconButton>
           <Typography variant="body2">{dislikesCount}</Typography>
         </Box>
+
         <Typography variant="body2" sx={{ marginLeft: "auto" }}>
           {user ? (
             <Link to={`/snippets/${snippet.id}`}>{commentsCount} comments</Link>
@@ -133,6 +142,12 @@ const SnippetCard: React.FC<SnippetCardProps> = ({ snippet }) => {
             </Typography>
           )}
         </Typography>
+
+        {isAuthor && (
+          <IconButton size="small" onClick={handleEdit} sx={{ ml: 1 }}>
+            <EditIcon fontSize="small" />
+          </IconButton>
+        )}
       </div>
     </div>
   );

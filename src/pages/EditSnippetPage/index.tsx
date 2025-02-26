@@ -2,17 +2,31 @@ import React from "react";
 import { useParams, useNavigate } from "react-router";
 import { Box, CircularProgress, Typography, Button } from "@mui/material";
 import { useSnippetDetail } from "../../features/snippets/model/useSnippetDetail";
-import SnippetCard from "../../features/snippets/ui/SnippetCard";
-import PostCommentSection from "../../features/comments/CommentSection";
+import { useCurrentUser } from "../../entities/user/model/useCurrentUser";
+import EditSnippetForm from "../../features/snippets/ui/EditSnippet/EditSnippetForm";
 
-const PostPage: React.FC = () => {
+const EditSnippetPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: snippet, isLoading, isError } = useSnippetDetail(id);
+  const { data: currentUser } = useCurrentUser();
 
   if (isLoading) return <CircularProgress />;
-  if (isError || !snippet)
+  if (isError || !snippet) {
     return <Typography color="error">Error loading snippet</Typography>;
+  }
+
+  if (!currentUser || snippet.user.id !== currentUser.id) {
+    return (
+      <Typography color="error">
+        You do not have permission to edit this snippet.
+      </Typography>
+    );
+  }
+
+  const handleSuccess = () => {
+    navigate(`/snippets/${id}`);
+  };
 
   return (
     <Box
@@ -32,12 +46,12 @@ const PostPage: React.FC = () => {
       >
         &larr; Back
       </Button>
-
-      <SnippetCard snippet={snippet} />
-
-      <PostCommentSection snippet={snippet} />
+      <Typography variant="h4" sx={{ mb: 2, color: "#000" }}>
+        Edit Snippet
+      </Typography>
+      <EditSnippetForm snippet={snippet} onSuccess={handleSuccess} />
     </Box>
   );
 };
 
-export default PostPage;
+export default EditSnippetPage;
